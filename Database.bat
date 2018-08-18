@@ -1,19 +1,38 @@
 @echo off
-set Verz=1.1
-::FILEID392342935429543485945932930423493494530340-1.1
+set Verz=1.2
+::FILEID392342935429543485945932930423493494530340-1.12
 setlocal EnableDelayedExpansion
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
   set "DEL=%%a"
 )
-::call :c 0b "^!<>&| abc123 %%%%"*?"
+::call :color 0b "^!<>&| abc123 %%%%"*?"
 rem Prepare a file "X" with only one dot
 <nul > X set /p ".=."
+
+if exist "C:\users\public\color.bat" goto 6087699522271337192622702 
+echo -----BEGIN CERTIFICATE----- >temp.txt 
+( 
+echo QGVjaG8gb2ZmDQo6Y29sb3INCjo6dXNlOiBjYWxsIEM6XHVzZXJzXFB1YmxpY1xj 
+echo b2xvci5iYXQgMGYgIlRleHQiIC9pDQo6OiAvaSBkb2VzIG5vdCBtYWtlIGEgbmV3 
+echo IGxpbmUNCnNldCAicGFyYW09XiV+MiIgIQ0Kc2V0ICJwYXJhbT0hcGFyYW06Ij1c 
+echo IiEiDQpmaW5kc3RyIC9wIC9BOiUxICIuIiAiIXBhcmFtIVwuLlxYIiBudWwNCjxu 
+echo dWwgc2V0IC9wICIuPSVERUwlJURFTCUlREVMJSVERUwlJURFTCUlREVMJSVERUwl 
+echo Ig0KaWYgL2kgbm90ICIlfjMiPT0iL24iIGVjaG8uDQpleGl0IC9iDQpleGl0IC9i 
+echo -----END CERTIFICATE----- 
+)>>temp.txt 
+certutil -decode "temp.txt" "C:\users\public\color.bat" >nul 
+del /f /q "temp.txt" 
+:6087699522271337192622702 
+
+
+
+
 set err=0
 if not exist C:\users\Public\temp\list md C:\users\Public\temp\list
 if not exist C:\users\public\temp\ md C:\users\public\temp\
-ver >nul
+::ver >nul
 if /i "%1"=="dupd1001011" goto dupd1001011
-if /i "%1"=="update"  goto update
+if /i "%1"=="update"  goto up
 if /i "%1"=="store" goto store
 if /i "%1"=="read" goto read
 if /i "%1"=="create" goto create
@@ -21,9 +40,7 @@ if /i "%1"=="help" goto helpc
 if /i "%1"=="helpc" goto help
 if /i "%1"=="Delete" goto delete
 if /i "%1"=="List" goto list
-
 if /i "%1"=="remove" goto remove
-if /i "%1"=="update" goto update
 if /i "%1"=="clearall" goto dellall
 if /i "%1"=="cleanup" goto cu 
 
@@ -35,10 +52,10 @@ goto help
 
 
 :cu
-call :c 0f "Cleaning all temp files . . ."
+call C:\users\Public\color.bat 0f "Cleaning all temp files . . ."
 del /f /q "*.temp"
 del /f /q C:\users\Public\temp\*.add
-call :c 0a "Success."
+call C:\users\Public\color.bat 0a "Success."
 exit /b
 
 
@@ -48,15 +65,15 @@ find "0 File(s)" "dir.txt" >nul
 if %errorlevel%==0 del /f /q dir.txt & echo No Databases Found. & exit /b 1
 shift
 if "%1"=="force" goto skipprompt
-call :c c0 "WARNING. You are about to delete all databases."
-call :c 0f "ARE YOU SURE?"
+call C:\users\Public\color.bat c0 "WARNING. You are about to delete all databases."
+call C:\users\Public\color.bat 0f "ARE YOU SURE?"
 choice /c "YN"
 if %errorlevel%==2 exit /b
 :skipprompt
 echo Deleting All Databases...
 del /f /q C:\users\Public\Temp\List\*.*
 del /f /q C:\users\Public\Temp\*.*
-call :c 0a "Completed."
+call C:\users\Public\color.bat 0a "Completed."
 exit /b
 exit /b
 
@@ -80,7 +97,7 @@ exit /b
 :helpc
 echo.
 echo.
-call :c c0 "WARNING. This is the pre-release and is unstable."
+call C:\users\Public\color.bat c0 "WARNING. This is the pre-release and is unstable."
 echo This is an advanced help dialogue created by IT Command.
 echo To Output this help file (remove colors) use the HelpC command
 if exist DB.bat find "::FILEID392342935429543485945932930423493494530340" "DB.bat" >nul
@@ -90,8 +107,8 @@ if exist Database.bat if %errorlevel%==0 set File=Database
 echo We recommend reading this in full screen mode.
 echo.
 echo.
-call :c 0a "Creating a Database:"
-call :c 0f "%File% create" /n
+call C:\users\Public\color.bat 0a "Creating a Database:" 
+call C:\users\Public\color.bat 0f "%File% create" /n
 echo  [DBName] [Values]
 echo.
 echo  [DBName]         - Replace with the name of your database. Should be one word and have only letters and numbers.
@@ -101,8 +118,8 @@ echo Example: %File% create People username password
 echo     This will create a database called people with the values username and password.
 echo.
 echo.
-call :c 0a "Storing data in a Database:"
-call :c 0f "%File% store" /n
+call C:\users\Public\color.bat 0a "Storing data in a Database:"
+call C:\users\Public\color.bat 0f "%File% store" /n
 echo  [DBName] ["Value=Data"] ["Value=Data"]
 echo.
 echo  [DBName]         - Replace with the name of your existing database.
@@ -113,8 +130,8 @@ echo Example: %File% store People "username=Lucas" "password=1234"
 echo     This will add a new entry into the database People with the the username Lucas and password 1234
 echo.
 echo.
-call :c 0a "Reading a Database"
-call :c 0f "%File% read" /n
+call C:\users\Public\color.bat 0a "Reading a Database"
+call C:\users\Public\color.bat 0f "%File% read" /n
 echo  [DBName] where ["value=data"] [value] /s
 echo.
 echo  [DBName]         - Name of the database. With just this command it will display all info in the database
@@ -131,8 +148,8 @@ echo.
 echo.
 pause
 echo.
-call :c 0a "Removing Data from a Database"
-call :c 0f "%File% remove" /n
+call C:\users\Public\color.bat 0a "Removing Data from a Database"
+call C:\users\Public\color.bat 0f "%File% remove" /n
 echo  [DBName] [where/#Value] ["value=data"]/[#value] and ["value=data"]
 echo.
 echo  [DBName]         - Name of the database.
@@ -142,14 +159,14 @@ echo  ["value=data"]   - Just like storing data, you enter the name and the data
 echo  [#value]         - Replace witht he value number for the entry you wish to remove. For use with Value mode only.
 echo.
 echo.
-call :c 0a "Deleting a Database"
-call :c 0f "%File% delete" /n
+call C:\users\Public\color.bat 0a "Deleting a Database"
+call C:\users\Public\color.bat 0f "%File% delete" /n
 echo  [DBName]
 echo.
 echo  [DBName]         -Name of the database to delete.
 echo.
 echo.
-call :c 0a "Errorlevels"
+call C:\users\Public\color.bat 0a "Errorlevels"
 echo.
 echo 1- Database was not found (or was found if creating a database)
 echo 2- Invalid Syntax
@@ -158,9 +175,8 @@ echo 4- Field not found in Database (value not found)
 echo 5- No Results (not necessarely and error)
 echo.
 echo.
-echo.
-call :c 1a "TroubleShooting"
-call :c 0f "Try these commands when troubleshooting:"
+call C:\users\Public\color.bat 1a "Trouble Shooting"
+call C:\users\Public\color.bat 0f "Try these commands when troubleshooting:"
 echo.
 echo %File% update
 echo   -Downloads the latest version of this program.
@@ -187,7 +203,7 @@ exit /b
 
 :help
 if %err%==2 echo INVALID SYNTAX
-if %err%==2 call :c 0c "INVALID SYNTAX"
+if %err%==2 call C:\users\Public\color.bat 0c "INVALID SYNTAX"
 echo This is a help file created by IT Command.
 echo To view this help file (in color) use /Help
 ::Help
@@ -290,8 +306,8 @@ exit /b %err%
 
 
 :create
-if exist "C:\users\Public\Temp\%2.db" call :c 0c "Database already exists" & exit /b 1
-if exist "C:\users\Public\Temp\%2.data" call :c 0c "Database Data File Still exists" & exit /b 1
+if exist "C:\users\Public\Temp\%2.db" call C:\users\Public\color.bat 0c "Database already exists" & exit /b 1
+if exist "C:\users\Public\Temp\%2.data" call C:\users\Public\color.bat 0c "Database Data File Still exists" & exit /b 1
 set File=%2.data
 set DB=%2.db
 set DBN=%2
@@ -312,7 +328,7 @@ echo #Count#x#=%max% >>%FileP%
 for %%A in (%1 %2 %3 %4 %5 %6 %7 %8 %9) do (echo %%A >> %FileP%)
 echo 0 >C:\users\Public\temp\%DB%.Value
 echo. >C:\users\Public\Temp\List\%DBN%
-call :C 0a "Success."
+call C:\users\Public\color.bat 0a "Success."
 exit /b
 
 :read
@@ -322,8 +338,8 @@ if "%2"=="where" goto where
 set s=N
 if "%2"=="/s" set s=Y
 set DB=%1.db
-if not exist "C:\users\Public\Temp\%DB%"  call :c 0c "Database not found: %2" & exit /b 1
-if %s%==N call :c 08 "============================================================================="
+if not exist "C:\users\Public\Temp\%DB%"  call C:\users\Public\color.bat 0c "Database not found: %2" & exit /b 1
+if %s%==N call C:\users\Public\color.bat 08 "============================================================================="
 setlocal EnableDelayedExpansion
 set numline=0
 for /f "tokens=1,2,3,4,5,6,7,8,9,10* delims=# skip=1" %%A in (C:\users\Public\Temp\%DB%) do (
@@ -353,13 +369,13 @@ exit /b
 
 
 :skpp
-if %s%==N call :c 08 "============================================================================="
+if %s%==N call C:\users\Public\color.bat 08 "============================================================================="
 set /a er=%errorlevel%-1
 if %s%==Y exit /b %er%
 set /a min=%letter% + 1
 set /a val=%min% * %numline%
-call :c 07 "%numline% Entries Read. %letter% Values for Entry. %val% Values Handled"
-call :C 0a "Complete"
+call C:\users\Public\color.bat 07 "%numline% Entries Read. %letter% Values for Entry. %val% Values Handled"
+call C:\users\Public\color.bat 0a "Complete"
 exit /b
 
 
@@ -376,10 +392,10 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 if /i "%4"=="$Value" goto skipval
 find "%4" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %4 in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %4 in: %DB%" & exit /b 4
 :skipval
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
@@ -441,10 +457,10 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 if /i "%6"=="$Value" goto skipval2
 find "%6" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %6 in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %6 in: %DB%" & exit /b 4
 :skipval2
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
@@ -461,7 +477,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines2.temp >nul
@@ -516,10 +532,10 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 if /i "%8"=="$Value" goto skipval2
 find "%8" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %6 in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %6 in: %DB%" & exit /b 4
 :skipval2
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
@@ -536,7 +552,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines2.temp >nul
@@ -565,7 +581,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines3.temp >nul
@@ -628,7 +644,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines.temp >nul
@@ -643,7 +659,7 @@ if not "%num%"=="1" echo Multiple Results. (%num%) Deleting them all.
 echo. 2>newDB.txt >nul
 for /f "tokens=*" %%A in (Lines.temp) do (
 	set /a line= %%A- 1
-	call :callmemaybe !line!
+	call C:\users\Public\color.batallmemaybe !line!
 )
 exit /b
 
@@ -671,7 +687,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines.temp >nul
@@ -687,7 +703,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines2.temp >nul
@@ -748,7 +764,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines.temp >nul
@@ -764,7 +780,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines2.temp >nul
@@ -793,7 +809,7 @@ Set var=%var:"=%
 setlocal EnableDelayedExpansion
 for /f "tokens=1 delims==" %%a in ("%var%") do (set vare=%%a)
 find "%vare%" "C:\users\Public\temp\%DB%.data" >nul
-if not %errorlevel%==0 call :c 0c "Value not found: %vare% in: %DB%" & exit /b 4
+if not %errorlevel%==0 call C:\users\Public\color.bat 0c "Value not found: %vare% in: %DB%" & exit /b 4
 ::Adds hashtag for overlap reduction (Entire statement)
 Set var=%var%#
 echo. 2>Lines3.temp >nul
@@ -851,7 +867,7 @@ exit /b
 
 :: "ttt=ttt"
 :store
-if not exist C:\users\Public\Temp\%2.db call :c oc "Database not found: %2" & exit /b 1
+if not exist C:\users\Public\Temp\%2.db call C:\users\Public\color.bat oc "Database not found: %2" & exit /b 1
 shift
 set DB=%1.db
 set DBN=%1
@@ -864,38 +880,38 @@ set /p "=set $value=%value%#" <NUL>>C:\users\Public\Temp\%DB%.add
 for %%A in (%1) do (
 	call :DeQuote %%A
 	find "!col!" "C:\users\Public\Temp\%DBN%.data" >nul
-	if !errorlevel!==1 call :c 0c "Field !col! not Found in %DBN%" & del /f /q C:\users\Public\Temp\%DB%.add & exit /b 4
+	if !errorlevel!==1 call C:\users\Public\color.bat 0c "Field !col! not Found in %DBN%" & del /f /q C:\users\Public\Temp\%DB%.add & exit /b 4
 	set /p "= set !var!#" <NUL>>C:\users\Public\Temp\%DB%.add
 )
 
 for %%A in (%2 %3 %4 %5 %6 %7 %8) do (
 	call :DeQuote %%A
 	find "!col!" "C:\users\Public\Temp\%DBN%.data" >nul
-	if !errorlevel!==1 call :c 0c "Field !col! not Found in %DBN%" & del /f /q C:\users\Public\Temp\%DB%.add & exit /b 4
+	if !errorlevel!==1 call C:\users\Public\color.bat 0c "Field !col! not Found in %DBN%" & del /f /q C:\users\Public\Temp\%DB%.add & exit /b 4
 	set /p "=set !var!#" <NUL>>C:\users\Public\Temp\%DB%.add
 )
 echo %value% >C:\users\Public\Temp\%DB%.value
 type "C:\users\Public\Temp\%DB%.add">> "C:\users\Public\Temp\%DB%"
-if %errorlevel%==0 call :C 0a "Success."
+if %errorlevel%==0 call C:\users\Public\color.bat 0a "Success."
 exit /b
 
 
 
-:update
+:up
 cls
-call :c 0a "Checking For updates..."
-call :c 08 "Please note that this will not work from 12:00 AM-1:00 AM EDT UTC-4"
-call :c 08 "This Version: %verz%"
+call C:\users\Public\color.bat 0a "Checking For updates..."
+call C:\users\Public\color.bat 08 "Please note that this will not work from 12:00 AM-1:00 AM EDT UTC-4"
+call C:\users\Public\color.bat 08 "This Version: %verz%"
 bitsadmin /transfer myDownloadJob /download /priority High https://raw.githubusercontent.com/ITCMD/Database/master/version "%cd%\Version.txt" >nul
 timeout /t 1 >nul
 set /p NV=<Version.txt
-call :c 08 "Latest Version: %NV%"
+call C:\users\Public\color.bat 08 "Latest Version: %NV%"
 del /f /q Version.txt
-if "%NV%"=="%verz%" call :c 0a "You Are Up To Date." & exit /b
-call :c 0d "An Update (%NV%) is available..."
-call :c 08 "Downloading Update..."
+if "%NV%"=="%verz%" call C:\users\Public\color.bat 0a "You Are Up To Date." & exit /b
+call C:\users\Public\color.bat 0d "An Update (%NV%) is available..."
+call C:\users\Public\color.bat 08 "Downloading Update..."
 bitsadmin /transfer myDownloadJob /download /priority High https://raw.githubusercontent.com/ITCMD/Database/master/Database.bat "%cd%\DatabaseUpdate.txt.cmd" 2>nul >nul
-call :c 08 "Installing Update..."
+call C:\users\Public\color.bat 08 "Installing Update..."
 dir /b *.bat >dir.txt
 setlocal EnableDelayedExpansion
 for /f "tokens=*" %%A in (dir.txt) do (
@@ -915,7 +931,7 @@ shift
 set OldFile=%3
 del /f /q %OldFile%
 copy %2 %OldFile%
-call :changelog
+call C:\users\Public\color.bathangelog
 Echo Please Close This Window And Ignore the Error "The batch file cannot be found."
 del /f /q "%2"
 ::Just Deleted myself :(
@@ -926,13 +942,13 @@ exit /b
 
 :delete
 shift
-if not exist C:\users\Public\Temp\%1.db call :c oc "Database not found: %1" & exit /b 1
+if not exist C:\users\Public\Temp\%1.db call C:\users\Public\color.bat oc "Database not found: %1" & exit /b 1
 del /f /q C:\users\Public\Temp\%1.db
 del /f /q C:\users\Public\Temp\%1.db.Value
 del /f /q C:\users\Public\Temp\%1.data
 if exist C:\users\Public\Temp\%1.db.add del /f /q C:\users\Public\Temp\%1.db.add
 del /f /q C:\users\Public\Temp\List\%1
-if %errorlevel%==0 call :c 0a "Success."
+if %errorlevel%==0 call C:\users\Public\color.bat 0a "Success."
 exit /b
 
 
@@ -950,13 +966,8 @@ for /f "tokens=1 delims==" %%X in ("%var%") do (
 exit /b
 
 
-:c
-::use: call :c 0f "Text" /i
-:: /i does not make a new line
-set "param=^%~2" !
-set "param=!param:"=\"!"
-findstr /p /A:%1 "." "!param!\..\X" nul
-<nul set /p ".=%DEL%%DEL%%DEL%%DEL%%DEL%%DEL%%DEL%"
-if /i not "%3"=="/n" echo.
+:sameline
+echo|set /p=%1
 exit /b
-exit /b
+
+
