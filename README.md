@@ -83,5 +83,5 @@ Try these commands when troubleshooting:
 
 This Version: 
 Written by: Lucas Elliott with IT Command www.itcommand.tech
-Contact:  Lucas@ITCommand.tech```
+Contact:  Lucas@ITCommand.tech
 
