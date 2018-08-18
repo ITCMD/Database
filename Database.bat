@@ -1,6 +1,6 @@
 @echo off
 set Verz=1.2
-::FILEID392342935429543485945932930423493494530340-1.12
+::FILEID392342935429543485945932930423493494530340-1.2
 setlocal EnableDelayedExpansion
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
   set "DEL=%%a"
