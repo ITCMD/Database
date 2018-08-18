@@ -931,8 +931,9 @@ shift
 set OldFile=%3
 del /f /q %OldFile%
 copy %2 %OldFile%
-call C:\users\Public\color.bathangelog
+call :changelog
 Echo Please Close This Window And Ignore the Error "The batch file cannot be found."
+echo.
 del /f /q "%2"
 ::Just Deleted myself :(
 exit /b
