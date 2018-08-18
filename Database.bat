@@ -896,6 +896,12 @@ if %errorlevel%==0 call C:\users\Public\color.bat 0a "Success."
 exit /b
 
 
+:changelog
+echo THE FOLLOWING CHANGES HAVE BEEN MADE:
+echo.
+echo Some Stuff was fixed/added/removed/changed
+exit /b
+
 
 :up
 cls
