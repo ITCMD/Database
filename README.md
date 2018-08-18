@@ -1,4 +1,4 @@
-# Database
+# Database Version 1.2
 Allows you to create and manage databases in Batch Code
 
 # The Help File
