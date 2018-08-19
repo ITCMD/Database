@@ -916,7 +916,7 @@ exit /b
 :up
 cls
 call C:\users\Public\color.bat 0a "Checking For updates..."
-call C:\users\Public\color.bat 08 "Please note that this will not work from 12:00 AM-1:00 AM EDT UTC-4"
+call C:\users\Public\color.bat 08 "Please note that this will update to older versions if this version was retracted."
 call C:\users\Public\color.bat 08 "This Version: %verz%"
 bitsadmin /transfer myDownloadJob /download /priority High https://raw.githubusercontent.com/ITCMD/Database/master/version "%cd%\Version.txt" >nul
 timeout /t 1 >nul
@@ -947,8 +947,8 @@ shift
 set OldFile=%3
 del /f /q %OldFile%
 copy %2 %OldFile%
-call C:\users\Public\color.bathangelog
-Echo Please Close This Window And Ignore the Error "The batch file cannot be found."
+call :changelog
+call C:\users\Public\color.bat 0a "Please Close This Window And Ignore the Error: The batch file cannot be found."
 del /f /q "%2"
 ::Just Deleted myself :(
 exit /b
