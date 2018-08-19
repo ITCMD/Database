@@ -1,6 +1,6 @@
 @echo off
-set Verz=1.2
-::FILEID392342935429543485945932930423493494530340-1.2
+set Verz=1.3
+::FILEID392342935429543485945932930423493494530340-1.3
 setlocal EnableDelayedExpansion
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
   set "DEL=%%a"
@@ -46,6 +46,9 @@ if /i "%1"=="cleanup" goto cu
 
 ::ADD ERRORLEVELS TO HELP!
 ::ADD where and
+set dp=n
+echo %cmdcmdline% | find /i "/C" >nul
+if %errorlevel%==0 set dp=y & goto Helpc
 
 
 goto help
@@ -100,10 +103,16 @@ echo.
 call C:\users\Public\color.bat c0 "WARNING. This is the pre-release and is unstable."
 echo This is an advanced help dialogue created by IT Command.
 echo To Output this help file (remove colors) use the HelpC command
-if exist DB.bat find "::FILEID392342935429543485945932930423493494530340" "DB.bat" >nul
-if exist DB.bat if %errorlevel%==0 set File=DB
-if exist Database.bat find "::FILEID392342935429543485945932930423493494530340" "Database.bat" >nul
-if exist Database.bat if %errorlevel%==0 set File=Database
+set File=Database.bat
+dir /b "*.bat" >files.temp
+setlocal EnableDelayedExpansion
+for /f "tokens=*" %%A in (files.temp) do (
+	find "FILEID392342935429543485945932930423493494530340-%verz%" "%%A" >nul
+	if !errorlevel!==0 set File=%%A & goto FoundNME
+	)
+:FoundNME
+set File=%File:~0,-5%
+del /f /q files.temp
 echo We recommend reading this in full screen mode.
 echo.
 echo.
@@ -192,6 +201,7 @@ echo This Version: %ver%
 echo Written by: Lucas Elliott with IT Command www.itcommand.tech
 echo Contact:  Lucas@ITCommand.tech
 echo.
+if %dp%==y pause
 exit /b 
 exit /b
 
@@ -211,10 +221,16 @@ echo.
 echo.
 echo This is an advanced help dialogue created by IT Command.
 echo To Output this help file (remove colors) use the HelpC command
-if exist DB.bat find "::FILEID392342935429543485945932930423493494530340" "DB.bat" >nul
-if exist DB.bat if %errorlevel%==0 set File=DB
-if exist Database.bat find "::FILEID392342935429543485945932930423493494530340" "Database.bat" >nul
-if exist Database.bat if %errorlevel%==0 set File=Database
+set File=Database.bat
+dir /b "*.bat" >files.temp
+setlocal EnableDelayedExpansion
+for /f "tokens=*" %%A in (files.temp) do (
+	find "FILEID392342935429543485945932930423493494530340-%verz%" "%%A" >nul
+	if !errorlevel!==0 set File=%%A & goto FoundNME
+	)
+:FoundNME
+set File=%File:~0,-5%
+del /f /q files.temp
 echo We recommend reading this in full screen mode.
 echo.
 echo.
@@ -896,12 +912,6 @@ if %errorlevel%==0 call C:\users\Public\color.bat 0a "Success."
 exit /b
 
 
-:changelog
-echo THE FOLLOWING CHANGES HAVE BEEN MADE:
-echo.
-echo Some Stuff was fixed/added/removed/changed
-exit /b
-
 
 :up
 cls
@@ -937,9 +947,8 @@ shift
 set OldFile=%3
 del /f /q %OldFile%
 copy %2 %OldFile%
-call :changelog
+call C:\users\Public\color.bathangelog
 Echo Please Close This Window And Ignore the Error "The batch file cannot be found."
-echo.
 del /f /q "%2"
 ::Just Deleted myself :(
 exit /b
@@ -971,10 +980,6 @@ for /f "tokens=1 delims==" %%X in ("%var%") do (
 	set col=%%X
   )
 exit /b
-
-
 :sameline
 echo|set /p=%1
 exit /b
-
-
