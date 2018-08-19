@@ -899,7 +899,7 @@ for %%A in (%1) do (
 	if !errorlevel!==1 call C:\users\Public\color.bat 0c "Field !col! not Found in %DBN%" & del /f /q C:\users\Public\Temp\%DB%.add & exit /b 4
 	set /p "= set !var!#" <NUL>>C:\users\Public\Temp\%DB%.add
 )
-
+Rem This is an easter egg or something
 for %%A in (%2 %3 %4 %5 %6 %7 %8) do (
 	call :DeQuote %%A
 	find "!col!" "C:\users\Public\Temp\%DBN%.data" >nul
@@ -939,7 +939,7 @@ for /f "tokens=*" %%A in (dir.txt) do (
 	)
 )
 del /f /q dir.txt
-start DatabaseUpdate.txt.cmd dupd1001011 "CurrentVersion.txt" "DatabaseUpdate.txt.cmd" "%ThisFile%"
+start DatabaseUpdate.txt.cmd dupd1001011 "DatabaseUpdate.txt.cmd" "%ThisFile%"
 exit /b
 
 :dupd1001011
