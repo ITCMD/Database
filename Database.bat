@@ -13,14 +13,6 @@ IF %_MajorMinor% GEQ 1000 if %_Build% GTR 10586 ( set "_AE=Yes" ) else (
 rem use the _AE flag
 if defined _AE (set type=Color10) ELSE (set type=echoset)
 
-setlocal EnableDelayedExpansion
-for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
-  set "DEL=%%a"
-)
-::call :color 0b "^!<>&| abc123 %%%%"*?"
-rem Prepare a file "X" with only one dot
-<nul > X set /p ".=."
-
 if exist "C:\users\Public\color2.bat" goto 59542502022848164622739512595 
 (echo -----BEGIN CERTIFICATE-----)>temp.txt 
 ( 
